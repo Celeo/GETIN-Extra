@@ -1,6 +1,5 @@
 # Client
 client/dist
-client/build
 node_modules
 *-debug.log*
 
@@ -10,3 +9,4 @@ __pycache__
 *.log
 config.cfg
 *.db
+server/env
