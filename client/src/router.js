@@ -1,21 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import store from './data'
+import store from '@/store'
 
-import Landing from './pages/Landing'
-import Login from './pages/Login'
-import Logout from './pages/Logout'
-import LoginCallback from './pages/LoginCallback'
-import Admin from './pages/Admin'
-import Index from './pages/Index'
-import AddNewPage from './pages/AddNewPage'
-import ViewPage from './pages/ViewPage'
-import EditPage from './pages/EditPage'
-import HistoryPage from './pages/HistoryPage'
+import Landing from '@/pages/Landing'
+import Login from '@/pages/Login'
+import Logout from '@/pages/Logout'
+import LoginCallback from '@/pages/LoginCallback'
+import WikiAdmin from '@/pages/wiki/Admin'
+import WikiIndex from '@/pages/wiki/Index'
+import WikiAddNewPage from '@/pages/wiki/AddNewPage'
+import WikiViewPage from '@/pages/wiki/ViewPage'
+import WikiEditPage from '@/pages/wiki/EditPage'
+import WikiHistoryPage from '@/pages/wiki/HistoryPage'
 
+import FitsAdmin from '@/pages/fits/Admin'
+import FitsEditor from '@/pages/fits/Editor'
+import FitsFits from '@/pages/fits/Fits'
 
-// TODO going to need the fits routes in here
 
 Vue.use(VueRouter)
 
@@ -24,12 +26,15 @@ const routes = [
   { path: '/login', component: Login, name: 'Login' },
   { path: '/logout', component: Logout, name: 'Logout' },
   { path: '/eve/callback', component: LoginCallback, name: 'LoginCallback' },
-  { path: '/admin', component: Admin, name: 'Admin' },
-  { path: '/index', component: Index, name: 'Index' },
-  { path: '/add/:name', component: AddNewPage, name: 'AddNewPage' },
-  { path: '/page/:category/:page', component: ViewPage, name: 'ViewPage' },
-  { path: '/edit/:pageId', component: EditPage, name: 'EditPage' },
-  { path: '/history/:pageId', component: HistoryPage, name: 'HistoryPage' }
+  { path: '/wiki/admin', component: WikiAdmin, name: 'WikiAdmin' },
+  { path: '/wiki/index', component: WikiIndex, name: 'WikiIndex' },
+  { path: '/wiki/add/:name', component: WikiAddNewPage, name: 'WikiAddNewPage' },
+  { path: '/wiki/page/:category/:page', component: WikiViewPage, name: 'WikiViewPage' },
+  { path: '/wiki/edit/:pageId', component: WikiEditPage, name: 'WikiEditPage' },
+  { path: '/wiki/history/:pageId', component: WikiHistoryPage, name: 'WikiHistoryPage' },
+  { path: '/fits', component: FitsFits, name: 'FitsFits' },
+  { path: '/editor', component: FitsEditor, name: 'FitsEditor' },
+  { path: '/admin', component: FitsAdmin, name: 'FitsAdmin' }
 ]
 
 const router = new VueRouter({
@@ -48,7 +53,6 @@ router.beforeEach((to, from, next) => {
   */
   if (['Login', 'Logout', 'Landing', 'LoginCallback'].indexOf(to.name) === -1) {
     if (!store.getters.isLoggedIn) {
-      console.log('Router redirecting to login page')
       next({ name: 'Login' })
       store.commit('SET_LOGIN_REDIRECT', to.path)
       return

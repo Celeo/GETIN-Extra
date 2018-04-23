@@ -3,7 +3,7 @@
     section.section.span
       div.container
         div.heading
-          h1.title Wiki for GETIN
+          h1.title GETIN-Extra
         br
         p
           | This app functions like to a wiki to share knowledge amongst alliance members.
@@ -18,11 +18,11 @@
       div.container
         div.content.has-text-centered
           p
-            strong GETIN-Wiki
+            strong GETIN-Extra
             |  by
             strong  Celeo
           p
-            a.icon(href="https://github.com/Celeo/GETIN-Wiki" target="_blank")
+            a.icon(href="https://github.com/Celeo/GETIN-Extra" target="_blank")
               i.fa.fa-github
 </template>
 

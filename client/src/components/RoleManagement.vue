@@ -55,7 +55,7 @@
 
 <script>
 import Vue from 'vue'
-import ServerError from '../components/ServerError'
+import ServerError from '@/components/ServerError'
 
 
 export default {

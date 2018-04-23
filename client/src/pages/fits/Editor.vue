@@ -47,8 +47,8 @@
 <script>
 import Vue from 'vue'
 import marked from 'marked'
-import { renderer } from '../util'
-import ServerError from '../components/ServerError'
+import { renderer } from '@/util'
+import ServerError from '@/components/ServerError'
 
 
 export default {

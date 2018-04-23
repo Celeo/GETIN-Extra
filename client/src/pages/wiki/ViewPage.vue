@@ -34,7 +34,7 @@
 <script>
 import Vue from 'vue'
 import marked from 'marked'
-import { renderer } from '../util'
+import { renderer } from '@/util'
 
 
 export default {

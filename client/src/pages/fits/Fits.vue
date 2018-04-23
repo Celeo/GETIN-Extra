@@ -30,10 +30,10 @@
 <script>
 import Vue from 'vue'
 import marked from 'marked'
-import { renderer } from '../util'
-import CategoryTab from '../components/CategoryTab'
-import ShipTab from '../components/ShipTab'
-import ServerError from '../components/ServerError'
+import { renderer } from '@/util'
+import CategoryTab from '@/components/CategoryTab'
+import ShipTab from '@/components/ShipTab'
+import ServerError from '@/components/ServerError'
 
 
 export default {

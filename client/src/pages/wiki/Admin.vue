@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import RoleManagement from '../components/RoleManagement'
-import CategoryManagement from '../components/CategoryManagement'
-import DeletedPagesList from '../components/DeletedPagesList'
+import RoleManagement from '@/components/RoleManagement'
+import CategoryManagement from '@/components/CategoryManagement'
+import DeletedPagesList from '@/components/DeletedPagesList'
 
 
 export default {

@@ -98,7 +98,7 @@ class WikiPage(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('wiki_category.id'))
     content = db.Column(db.String)
     deleted = db.Column(db.Boolean)
-    edits = db.relationship('Edit', backref='wiki_page', lazy='dynamic')
+    edits = db.relationship('WikiEdit', backref='wiki_page', lazy='dynamic')
 
     def __init__(self, name, category_id, content=''):
         self.name = name
@@ -185,7 +185,7 @@ class FitsCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     order = db.Column(db.Integer)
-    fits = db.relationship('Fit', backref='fits_category', lazy='dynamic')
+    fits = db.relationship('FitsFit', backref='fits_category', lazy='dynamic')
 
     def __init__(self, name, order=100):
         self.name = name
