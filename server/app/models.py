@@ -143,7 +143,7 @@ class WikiEdit(db.Model):
     }
 
     id = db.Column(db.Integer, primary_key=True)
-    page_id = db.Column(db.Integer, db.ForeignKey('page.id'))
+    page_id = db.Column(db.Integer, db.ForeignKey('wiki_page.id'))
     category_name = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     new_name = db.Column(db.String)

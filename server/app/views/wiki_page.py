@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource, marshal_with
 
 from ..util import authenticate, restrict_editor, get_user_from_token
-from ..models import db, WikiPage, Edit
+from ..models import db, WikiPage, WikiEdit
 
 
 class PagesResource(Resource):
@@ -23,7 +23,7 @@ class PagesResource(Resource):
             page = WikiPage(name=name, category_id=category_id)
             db.session.add(page)
             db.session.commit()
-            db.session.add(Edit(
+            db.session.add(WikiEdit(
                 page.id,
                 page.category_name,
                 get_user_from_token().id,
@@ -49,7 +49,7 @@ class PageResource(Resource):
     def put(self, id):
         """ Edit the page """
         page = WikiPage.query.get(id)
-        db.session.add(Edit(
+        db.session.add(WikiEdit(
             page.id,
             page.category_name,
             get_user_from_token().id,

@@ -5,7 +5,7 @@ from ..util import restrict_admin
 from ..models import db, FitsCategory
 
 
-class CategoriesResource(Resource):
+class FitsCategoriesResource(Resource):
 
     method_decorators = [restrict_admin]
 
@@ -19,7 +19,7 @@ class CategoriesResource(Resource):
         return {}, 204
 
 
-class CategoryResource(Resource):
+class FitsCategoryResource(Resource):
 
     method_decorators = [restrict_admin]
 

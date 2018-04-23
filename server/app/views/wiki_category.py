@@ -5,7 +5,7 @@ from ..util import authenticate, restrict_admin
 from ..models import db, WikiCategory, WikiPage
 
 
-class CategoriesResource(Resource):
+class WikiCategoriesResource(Resource):
 
     @authenticate
     @marshal_with(WikiCategory.resource_fields)
@@ -21,7 +21,7 @@ class CategoriesResource(Resource):
         return {}, 204
 
 
-class CategoryResource(Resource):
+class WikiCategoryResource(Resource):
 
     method_decorators = [restrict_admin]
 
