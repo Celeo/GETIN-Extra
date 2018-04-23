@@ -36,24 +36,10 @@
           ) Log out
     transition(name="fade" mode="out-in")
       router-view
-    b-modal(
-      v-bind:active.sync="newPageModalActive"
-      v-bind:component="NewPageModal"
-      v-bind:width="400"
-    )
 </template>
 
 <script>
-import NewPageModal from '@/components/NewPageModal'
-
-
 export default {
-  data() {
-    return {
-      NewPageModal,
-      newPageModalActive: false
-    }
-  },
   computed: {
     loggedIn() {
       return this.$store.getters.isLoggedIn

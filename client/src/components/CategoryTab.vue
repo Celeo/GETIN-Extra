@@ -1,5 +1,5 @@
 <template lang="pug">
-  a.nav-item.is-tab.big(
+  a.navbar-item.is-tab.big(
       v-bind:class="{ 'is-active': $store.getters.category === data.name }"
       @click="setCategory"
     ) {{ data.name }}
@@ -15,3 +15,10 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.big
+  font-size 30px
+  padding-left 100px
+  padding-right 100px
+</style>

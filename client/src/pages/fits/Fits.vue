@@ -2,12 +2,12 @@
   section.section
     div.container
       div(v-if="!error")
-        div(v-if="fits.length > 0")
+        div(v-if="categories.length > 0")
           nav.navbar.has-shadow.is-spaced
             div.navbar-start
               category-tab(
                 v-for="category in categories"
-                v-bind:key='category'
+                v-bind:key='category.id'
                 v-bind:data='category'
               )
           nav.navbar.has-shadow.is-spaced
@@ -21,7 +21,7 @@
                 v-bind:key="fit.name"
               )
               div(v-if="fitsInCategory.length === 0")
-                a.nav-item No fits in this category
+                a.navbar-item No fits in this category
           section.section
             div(v-html="markdown(fit.content)")
         div(v-else)

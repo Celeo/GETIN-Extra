@@ -1,5 +1,5 @@
 <template lang="pug">
-  a.nav-item.is-tab(
+  a.navbar-item.is-tab(
       v-bind:class="{ 'is-active': $store.getters.ship === name }"
       @click="setShip"
     ) {{ name }}
