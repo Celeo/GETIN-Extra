@@ -79,9 +79,9 @@ export default {
   methods: {
     async loadData() {
       try {
-        const pageResponse = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}page/${this.$route.params.pageId}`)
+        const pageResponse = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}wiki/page/${this.$route.params.pageId}`)
         this.currentPage = pageResponse.data
-        const historyResponse = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}history/${this.$route.params.pageId}`)
+        const historyResponse = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}wiki/history/${this.$route.params.pageId}`)
         this.histories = historyResponse.data
         this.error = false
       } catch (error) {
@@ -103,7 +103,7 @@ export default {
         hasIcon: true,
         onConfirm: async () => {
           try {
-            const response = await this.$store.getters.axios.put(`${Vue.config.SERVER_URL}rollback/${this.revisionId}`)
+            const response = await this.$store.getters.axios.put(`${Vue.config.SERVER_URL}wiki/rollback/${this.revisionId}`)
             this.$toast.open({
               message: 'Page saved',
               type: 'is-success'

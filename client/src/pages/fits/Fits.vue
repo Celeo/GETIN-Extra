@@ -2,27 +2,30 @@
   section.section
     div.container
       div(v-if="!error")
-        nav.nav.has-deep-shadow
-          div.nav-center
-            category-tab(
+        div(v-if="fits.length > 0")
+          nav.navbar.has-shadow.is-spaced
+            div.navbar-start
+              category-tab(
+                v-for="category in categories"
+                v-bind:key='category'
+                v-bind:data='category'
+              )
+          nav.navbar.has-shadow.is-spaced
+            div.navbar-start(
               v-for="category in categories"
-              v-bind:key='category'
-              v-bind:data='category'
+              v-if="$store.getters.category === category.name"
             )
-        nav.nav.has-deep-shadow
-          div.nav-center(
-            v-for="category in categories"
-            v-if="$store.getters.category === category.name"
-          )
-            ship-tab(
-              v-for="fit in fitsInCategory"
-              v-bind:name="fit.name"
-              v-bind:key="fit.name"
-            )
-            div(v-if="fitsInCategory.length === 0")
-              a.nav-item No fits in this category
-        section.section
-          div(v-html="markdown(fit.content)")
+              ship-tab(
+                v-for="fit in fitsInCategory"
+                v-bind:name="fit.name"
+                v-bind:key="fit.name"
+              )
+              div(v-if="fitsInCategory.length === 0")
+                a.nav-item No fits in this category
+          section.section
+            div(v-html="markdown(fit.content)")
+        div(v-else)
+          p No fits have been created.
       div(v-else)
         server-error
 </template>
@@ -74,7 +77,7 @@ export default {
     },
     async loadData() {
       try {
-        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}fits`)
+        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}fits/fits`)
         this.categories = response.data.categories
         this.fits = response.data.fits
         this.error = false

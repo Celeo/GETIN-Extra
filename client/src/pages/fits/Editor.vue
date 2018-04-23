@@ -8,7 +8,7 @@
           div.level-item(v-if="!refreshing")
             b-field(label="Select a fit")
               b-select(placeholder="select" v-model="selectedId")
-                b-option(
+                option(
                   v-for="fit in fits"
                   v-bind:value="fit.id"
                   v-bind:key="fit.id"
@@ -16,7 +16,7 @@
           div.level-item(v-if="!refreshing")
             b-field(label="Category")
               b-select(placeholder="select" v-model="categoryId" v-bind:disabled="selectedId === 0")
-                b-option(
+                option(
                   v-for="category in categories"
                   v-bind:value="category.id"
                   v-bind:key="category.id"
@@ -81,7 +81,7 @@ export default {
   methods: {
     async loadData() {
       try {
-        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}fits`)
+        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}fits/fits`)
         this.fits = response.data.fits
         this.categories = response.data.categories
         this.error = false
@@ -97,7 +97,7 @@ export default {
           category_id: this.selectedCategory.id,
           order: this.order
         }
-        await this.$store.getters.axios.put(`${Vue.config.SERVER_URL}fits/${this.selectedFit.id}`, data)
+        await this.$store.getters.axios.put(`${Vue.config.SERVER_URL}fits/fits/${this.selectedFit.id}`, data)
         await this.loadData()
         this.$toast.open({
           message: 'Fit saved',
@@ -121,7 +121,7 @@ export default {
         hasIcon: true,
         onConfirm: async () => {
           try {
-            await this.$store.getters.axios.delete(`${Vue.config.SERVER_URL}fits/${this.selectedId}`)
+            await this.$store.getters.axios.delete(`${Vue.config.SERVER_URL}fits/fits/${this.selectedId}`)
             await this.loadData()
             this.selectedId = 0
             this.categoryId = 0
@@ -151,7 +151,7 @@ export default {
         placeholder: 'name',
         onConfirm: async (value) => {
           try {
-            await this.$store.getters.axios.post(`${Vue.config.SERVER_URL}fits`, { name: value })
+            await this.$store.getters.axios.post(`${Vue.config.SERVER_URL}fits/fits`, { name: value })
             await this.loadData()
             this.$toast.open({
               message: 'New fit added',

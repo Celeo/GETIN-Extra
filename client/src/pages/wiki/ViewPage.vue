@@ -59,7 +59,7 @@ export default {
       try {
         this.loading = true
         const response = await this.$store.getters.axios.get(
-          `${Vue.config.SERVER_URL}lookup/${this.$route.params.category}/${this.$route.params.page}`
+          `${Vue.config.SERVER_URL}wiki/lookup/${this.$route.params.category}/${this.$route.params.page}`
         )
         this.page = response.data
         this.error = false

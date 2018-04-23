@@ -1,20 +1,23 @@
 <template lang="pug">
   div
     role-management
-    category-management
+    wiki-category-management
     deleted-pages-list
+    fits-category-management
 </template>
 
 <script>
 import RoleManagement from '@/components/RoleManagement'
-import CategoryManagement from '@/components/CategoryManagement'
+import WikiCategoryManagement from '@/components/WikiCategoryManagement'
+import FitsCategoryManagement from '@/components/FitsCategoryManagement'
 import DeletedPagesList from '@/components/DeletedPagesList'
 
 
 export default {
   components: {
     RoleManagement,
-    CategoryManagement,
+    WikiCategoryManagement,
+    FitsCategoryManagement,
     DeletedPagesList
   }
 }

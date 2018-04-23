@@ -6,14 +6,15 @@
           h1.title GETIN-Extra
         br
         p
-          | This app functions like to a wiki to share knowledge amongst alliance members.
+          | This web app combines 2 features together: a wiki, where users can read, create, and edit articles, and
+          | a place to read, create, and edit Pyfa-style fits.
           br
-          |  To view the articles, click the <strong>Log in</strong> link in the top right to sign in
+          |  To get started, click the <strong>Log in</strong> link in the top right to sign in
           |  with EVE's
           strong  SSO
           |  and then a
           strong  Index
-          |  button will appear.
+          |  button will appear for the wiki and fits.
     section.section.footer
       div.container
         div.content.has-text-centered
@@ -22,8 +23,11 @@
             |  by
             strong  Celeo
           p
-            a.icon(href="https://github.com/Celeo/GETIN-Extra" target="_blank")
-              i.fa.fa-github
+            a.icon.is-link(href="https://github.com/Celeo/GETIN-Extra" target="_blank")
+              b-icon(
+                pack="fa"
+                icon="github"
+              )
 </template>
 
 <script>

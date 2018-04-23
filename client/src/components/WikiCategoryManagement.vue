@@ -1,7 +1,7 @@
 <template lang="pug">
   section.section
     div.container
-      h1.title Category management
+      h1.title Wiki category management
       hr
       div(v-if="error")
         server-error
@@ -58,7 +58,7 @@ export default {
   methods: {
     async loadData() {
       try {
-        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}category`)
+        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}wiki/category`)
         this.categories = response.data
         this.error = false
       } catch (error) {
@@ -71,7 +71,7 @@ export default {
         const data = {
           name: this.rename
         }
-        await this.$store.getters.axios.put(`${Vue.config.SERVER_URL}category/${this.selectedId}`, data)
+        await this.$store.getters.axios.put(`${Vue.config.SERVER_URL}wiki/category/${this.selectedId}`, data)
         await this.loadData()
         this.$toast.open({
           message: 'Category saved',
@@ -102,7 +102,7 @@ export default {
           hasIcon: true,
           onConfirm: async () => {
             try {
-              await this.$store.getters.axios.delete(`${Vue.config.SERVER_URL}category/${this.selectedId}`)
+              await this.$store.getters.axios.delete(`${Vue.config.SERVER_URL}wiki/category/${this.selectedId}`)
               await this.loadData()
               this.selectedId = 0
               this.categoryId = 0
@@ -132,7 +132,7 @@ export default {
         placeholder: 'name',
         onConfirm: async (value) => {
           try {
-            await this.$store.getters.axios.post(`${Vue.config.SERVER_URL}category`, { name: value })
+            await this.$store.getters.axios.post(`${Vue.config.SERVER_URL}wiki/category`, { name: value })
             await this.loadData()
             this.$toast.open({
               message: 'New category added',

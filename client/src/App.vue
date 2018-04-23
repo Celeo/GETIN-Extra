@@ -15,10 +15,15 @@
             v-if="!loggedIn"
           ) Log in
           router-link.navbar-item.is-tab(
-            :to="{ name: 'Index' }"
-            v-bind:class="{ 'is-active': $router.currentRoute.name == 'Index' }"
+            :to="{ name: 'WikiIndex' }"
+            v-bind:class="{ 'is-active': $router.currentRoute.name == 'WikiIndex' }"
             v-if="loggedIn"
-          ) Index
+          ) Wiki Index
+          router-link.navbar-item.is-tab(
+            :to="{ name: 'FitsFits' }"
+            v-bind:class="{ 'is-active': $router.currentRoute.name == 'FitsFits' }"
+            v-if="loggedIn"
+          ) Fits Index
           router-link.navbar-item.is-tab(
             :to="{ name: 'Admin' }"
             v-bind:class="{ 'is-active': $router.currentRoute.name == 'Admin' }"
@@ -104,5 +109,9 @@ label.label {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.is-link {
+  cursor: pointer;
 }
 </style>

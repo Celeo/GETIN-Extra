@@ -31,7 +31,7 @@ export default {
   methods: {
     async loadData() {
       try {
-        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}deleted_pages`)
+        const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}wiki/deleted_pages`)
         this.pages = response.data
         this.error = false
       } catch (error) {
