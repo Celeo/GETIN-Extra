@@ -68,7 +68,7 @@ class PageResource(Resource):
     def delete(self, id):
         """ Delete the page """
         page = WikiPage.query.get(id)
-        db.session.add(Edit(
+        db.session.add(WikiEdit(
             page.id,
             page.category_name,
             get_user_from_token().id,

@@ -56,7 +56,7 @@ export default {
         }
         const response = await this.$store.getters.axios.post(`${Vue.config.SERVER_URL}wiki/page`, data)
         this.$router.push({
-          name: 'ViewPage',
+          name: 'WikiViewPage',
           params: {
             category: response.data.category,
             page: response.data.page

@@ -44,8 +44,7 @@
         hr
         div.columns(v-if="!originalPage.deleted")
           div#panel-input.column.is-half
-            p.control
-              textarea#entry.textarea(v-model="newContent")
+            textarea#entry.textarea(v-model="newContent")
           div.column.is-half
             div#panel-output(v-html="renderedContent")
 </template>
@@ -83,7 +82,7 @@ export default {
       }
     },
     pageUrlData() {
-      return { name: 'ViewPage', params: { category: this.originalPage.category_name, page: this.originalPage.name } }
+      return { name: 'WikiViewPage', params: { category: this.originalPage.category_name, page: this.originalPage.name } }
     }
   },
   methods: {
@@ -158,7 +157,7 @@ export default {
               message: 'Page deleted',
               type: 'is-success'
             })
-            this.$router.push({ name: 'Index' })
+            this.$router.push({ name: 'WikiIndex' })
           } catch (error) {
             console.error(error)
             Vue.nextTick(() => {
@@ -201,9 +200,9 @@ export default {
   border-right 1px solid rgba(0, 0, 0, 0.3)
 
 #panel-output
-  height 65vh
+  height 70vh !important
   overflow-y scroll
 
 #entry
-  height 70vh !important
+  height 100vh !important
 </style>

@@ -11,8 +11,6 @@ const state = {
   inAlliance: false,
   editor: false,
   admin: false,
-  category: 'PVE',
-  ship: 'Rattlesnake',
   postLoginDestination: null,
   axios: axios.create()
 }
@@ -45,15 +43,6 @@ const mutations = {
   CLEAR_LOGIN_REDIRECT(state) {
     state.postLoginDestination = null
     window.localStorage.removeItem('loginRedirect')
-  },
-
-  SET_CATEGORY(state, category) {
-    state.category = category
-    state.ship = null
-  },
-
-  SET_SHIP(state, ship) {
-    state.ship = ship
   }
 }
 
@@ -88,14 +77,6 @@ const getters = {
 
   postLoginDestination(state) {
     return state.postLoginDestination
-  },
-
-  category(state) {
-    return state.category
-  },
-
-  ship(state) {
-    return state.ship
   }
 }
 

@@ -17,14 +17,14 @@
         nav.level
           div.level-left
             div.level-item
-              h1.title <span id="title-cat">{{ page.category_name }} /</span> {{ page.name }}
+              h1.title <span class="title-cat">{{ page.category_name }} /</span> {{ page.name }}
           div.level-right
             div.level-item
               div.block
-                router-link.button(:to="{ name: 'EditPage', params: { pageId: page.id } }")
+                router-link.button(:to="{ name: 'WikiEditPage', params: { pageId: page.id } }")
                   b-icon(icon="pencil")
                   span Edit
-                router-link.button(:to="{ name: 'HistoryPage', params: { pageId: page.id } }")
+                router-link.button(:to="{ name: 'WikiHistoryPage', params: { pageId: page.id } }")
                   b-icon(icon="history")
                   span History
         hr
@@ -92,7 +92,7 @@ export default {
           try {
             // try to nav to the other page with the router instead of making a full request
             const [category, page] = href.split('/')
-            this.$router.push({ name: 'ViewPage', params: { category: category, page: page } })
+            this.$router.push({ name: 'WikiViewPage', params: { category: category, page: page } })
             event.preventDefault()
           } catch (err) {
             // just allow the link to act like a normal link
@@ -111,8 +111,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-#title-cat
-  font-size 16px
-</style>

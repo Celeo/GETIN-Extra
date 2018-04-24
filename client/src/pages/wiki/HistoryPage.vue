@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     pageUrlData() {
-      return { name: 'ViewPage', params: { category: this.currentPage.category_name, page: this.currentPage.name } }
+      return { name: 'WikiViewPage', params: { category: this.currentPage.category_name, page: this.currentPage.name } }
     },
     selectedRevision() {
       return this.histories.filter(e => e.id === this.revisionId)[0]
@@ -108,7 +108,7 @@ export default {
               message: 'Page saved',
               type: 'is-success'
             })
-            this.$router.push({ name: 'ViewPage', params: { category: response.data.category, page: response.data.name } })
+            this.$router.push({ name: 'WikiViewPage', params: { category: response.data.category, page: response.data.name } })
           } catch (error) {
             console.error(error)
             Vue.nextTick(() => {

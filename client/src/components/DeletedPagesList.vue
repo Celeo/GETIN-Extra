@@ -9,7 +9,7 @@
         aside.menu
           ul.menu-list
             li(v-if="pages.length > 0" v-for="page in pages")
-              router-link(:to="{ name: 'EditPage', params: { pageId: page.id } }") {{ page.name }}
+              router-link(:to="{ name: 'WikiEditPage', params: { pageId: page.id } }") {{ page.category_name }} / {{ page.name }}
             span(v-if="pages.length === 0") No deleted pages
 </template>
 

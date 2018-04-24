@@ -3,7 +3,7 @@
     nav.navbar.has-shadow.is-spaced
       div.container
         div.navbar-brand
-          router-link#brand.navbar-item(:to="'/'") GETIN-Extra
+          router-link#brand.navbar-item(:to="'/'") GETIN-Extras
         div.navbar-end
           router-link.navbar-item.is-tab(
             :to="{ name: 'Landing' }"
@@ -99,5 +99,9 @@ label.label {
 
 .is-link {
   cursor: pointer;
+}
+
+.title-cat {
+  font-size: 16px;
 }
 </style>

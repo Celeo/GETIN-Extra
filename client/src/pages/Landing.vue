@@ -25,7 +25,6 @@
           p
             a.icon.is-link(href="https://github.com/Celeo/GETIN-Extra" target="_blank")
               b-icon(
-                pack="fa"
                 icon="github"
               )
 </template>
