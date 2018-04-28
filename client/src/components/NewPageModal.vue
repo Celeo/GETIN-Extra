@@ -17,7 +17,7 @@ div.modal-card
           v-bind:key="category.id"
         ) {{ category.name }}
   footer.modal-card-foot
-      button.button(@click.prevent="$emit('close')") Close
+      button.button(@click.prevent="closeModal") Close
       button.button.is-success(@click="save" v-bind:disabled="name === '' || categoryId === 0") Create
 </template>
 
@@ -45,9 +45,15 @@ export default {
         hasIcon: true
       })
       this.$emit('close')
+      document.body.classList.toggle('is-noscroll', false)
     }
   },
   methods: {
+    closeModal() {
+      // https://github.com/buefy/buefy/issues/549
+      this.$emit('close')
+      document.body.classList.toggle('is-noscroll', false)
+    },
     async save() {
       try {
         const data = {
@@ -55,14 +61,19 @@ export default {
           category_id: this.categoryId
         }
         const response = await this.$store.getters.axios.post(`${Vue.config.SERVER_URL}wiki/page`, data)
-        this.$router.push({
-          name: 'WikiViewPage',
-          params: {
-            category: response.data.category,
-            page: response.data.page
-          }
+        this.$emit('close')
+        document.body.classList.toggle('is-noscroll', false)
+        Vue.nextTick(() => {
+          this.$router.push({
+            name: 'WikiViewPage',
+            params: {
+              category: response.data.category,
+              page: response.data.page
+            }
+          })
         })
         this.$emit('close')
+        document.body.classList.toggle('is-noscroll', false)
       } catch (error) {
         console.error(error)
         this.$dialog.alert({
