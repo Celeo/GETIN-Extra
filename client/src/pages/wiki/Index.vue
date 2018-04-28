@@ -4,7 +4,7 @@
       div(v-if="error")
         server-error
       div.content(v-else)
-        div.columns(v-if="$store.getters.editor")
+        div.columns(v-if="$store.getters.editor || $store.getters.admin")
           div.column
           div.column
             button.button.is-info(@click="newPageModalActive = true")

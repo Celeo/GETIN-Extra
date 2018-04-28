@@ -1,7 +1,7 @@
 <template lang="pug">
   section.section
     div.container
-      div.columns(v-if="$store.getters.editor")
+      div.columns(v-if="$store.getters.editor || $store.getters.admin")
         div.column.is-11
         div.column
           router-link.button.is-info(@click="newPageModalActive = true" :to="{ name: 'FitsEditor' }")
