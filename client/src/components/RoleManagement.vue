@@ -90,7 +90,7 @@ export default {
       this.$dialog.confirm({
         title: 'Confirm role change',
         message: `Are you sure that you want to ${changeAction.direction}
-          <strong>${this.selectedUser.name}</strong> ${toOrFrom} the ${changeAction.role} role`,
+          <strong>${this.selectedUser.name}</strong> ${toOrFrom} the ${changeAction.role} role?`,
         confirmText: 'Confirm',
         type: 'is-warning',
         hasIcon: true,
