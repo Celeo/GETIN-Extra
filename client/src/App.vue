@@ -103,5 +103,6 @@ label.label {
 
 .title-cat {
   font-size: 16px;
+  font-weight: 400 !important;
 }
 </style>
