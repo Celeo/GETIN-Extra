@@ -9,8 +9,10 @@
             b-icon(
               icon="arrow-right"
             )
-      div(v-if="!error")
-        div(v-if="categories.length > 0")
+      div(v-if="error")
+        server-error
+      div(v-else)
+        div(v-if="!loading && categories.length > 0")
           div.columns
             div.column(
               v-for="category in categories"
@@ -25,10 +27,10 @@
               p.fit.is-link(:class="{ 'is-selected': selectedFit === fit.id }" @click="setFit(fit.id)") {{ fit.name }}
           p(v-show="fitsInCategory.length === 0") No fits in this category
           p(v-html="fitData")
-        div(v-else)
+        div(v-if="loading")
+          p Loading data from server ...
+        div(v-if="!loading && categories.length === 0")
           p No fits have been created.
-      div(v-else)
-        server-error
 </template>
 
 <script>
@@ -48,6 +50,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       categories: [],
       fits: [],
       selectedCategory: 0,
@@ -89,6 +92,7 @@ export default {
     },
     async loadData() {
       try {
+        this.loading = true
         const response = await this.$store.getters.axios.get(`${Vue.config.SERVER_URL}fits/fits`)
         this.categories = response.data.categories
         this.fits = response.data.fits
@@ -101,6 +105,8 @@ export default {
       } catch (error) {
         this.error = true
         console.error(error)
+      } finally {
+        this.loading = false
       }
     },
     setCategory(id) {

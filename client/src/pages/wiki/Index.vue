@@ -10,7 +10,7 @@
             button.button.is-info(@click="newPageModalActive = true")
               b-icon(icon="plus")
               span New page
-        div(v-if="categories.length > 0" v-for="category of categories")
+        div(v-if="!loading && categories.length > 0" v-for="category of categories")
           h2.subtitle {{ category.name }}
           hr
           aside.menu
@@ -19,7 +19,9 @@
                 router-link(:to="{ name: 'WikiViewPage', params: { category: category.name, page: page.name } }") {{ page.name }}
               span(v-if="category.pages.length === 0") No pages in this category
           div.spacer
-        div(v-if="categories.length === 0 && !loading")
+        div(v-if="loading")
+          p Loading data from server ...
+        div(v-if="!loading && categories.length === 0")
           p No pages have been created.
     b-modal(
       v-bind:active.sync="newPageModalActive"
@@ -40,8 +42,8 @@ export default {
   },
   data() {
     return {
-      error: false,
       loading: true,
+      error: false,
       categories: [],
       NewPageModal,
       newPageModalActive: false
