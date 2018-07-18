@@ -26,11 +26,14 @@ class EVE_SSO_Resource(Resource):
             print(f'Char name for code {code} is {char_name}; fetching affiliation')
             basic_char_info = eveapi['preston'].get_op('get_characters_character_id', character_id=char_info['CharacterID'])
             corporation_id = basic_char_info['corporation_id']
-            alliance_id = basic_char_info['alliance_id']
+            alliance_id = basic_char_info.get('alliance_id')
             corporation_info = eveapi['preston'].get_op('get_corporations_corporation_id', corporation_id=corporation_id)
             corporation = corporation_info['name']
-            alliance_info = eveapi['preston'].get_op('get_alliances_alliance_id', alliance_id=alliance_id)
-            alliance = alliance_info['name']
+            if alliance_id:
+                alliance_info = eveapi['preston'].get_op('get_alliances_alliance_id', alliance_id=alliance_id)
+                alliance = alliance_info['name']
+            else:
+                alliance = None
             user = User.query.filter_by(name=char_name).first()
             if user:
                 user.corporation = corporation
@@ -40,7 +43,7 @@ class EVE_SSO_Resource(Resource):
                 db.session.add(user)
             db.session.commit()
             if not user.in_alliance:
-                print(f'${user.name} is not in the alliance, denying login')
+                print(f'{user.name} is not in the alliance, denying login')
                 return {}, 403
             token_data = {
                 'name': char_name,
@@ -58,5 +61,5 @@ class EVE_SSO_Resource(Resource):
                 'localToken': short_token
             }
         except Exception as e:
-            print(f'Exception: {e}')
+            print(e)
             return {}, 500

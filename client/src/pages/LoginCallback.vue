@@ -4,11 +4,14 @@
       div.heading
         h1.title(v-if="!error && processing") Finishing login ...
         template
-          div(v-if="error")
-            h1.title.red An error occurred with your login
-            h2.subtitle
-              router-link(to="{ name: 'Login' }") Please log in again
-          div(v-if="!error && !processing && name")
+          div(v-if="error === 'other'")
+            h1.title An error occurred with your login
+              h2.subtitle
+                router-link(to="{ name: 'Login' }") Please log in again
+          div(v-else-if="error === 'alliance'")
+            h1.title This app is for alliance-members only
+            h2.subtitle If you've recently joined, it can take the EVE API a while to update. Check back later.
+          div(v-if="!error && !processing")
             h1.title Login successful, redirecting you <strong>{{ name }}</strong>
 </template>
 
@@ -21,7 +24,7 @@ export default {
   data() {
     return {
       processing: true,
-      error: false,
+      error: null,
       name: ''
     }
   },
@@ -45,10 +48,14 @@ export default {
       }
 
       this.processing = false
-      this.error = false
+      this.error = null
     } catch (err) {
       console.error(err)
-      this.error = true
+      if (err.response && err.response.status === 403) {
+        this.error = 'alliance'
+      } else {
+        this.error = 'other'
+      }
     }
   }
 }
