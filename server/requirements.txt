@@ -14,7 +14,7 @@ itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
 Preston==4.0.0
-pycryptodome==3.6.1
+pycryptodome==3.6.6
 python-jose==2.0.2
 pytz==2018.4
 requests==2.18.4
